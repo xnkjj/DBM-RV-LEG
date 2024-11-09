@@ -557,7 +557,8 @@ DBM_CORE_AUTO_TIMER_OPTIONS = {
 	stage		= "Show timer for next stage",
 	adds		= "Show timer for incoming adds",
 	addscustom	= "Show timer for incoming adds",
-	roleplay	= "Show timer for roleplay duration"--This does need localizing though.
+	roleplay	= "Show timer for roleplay duration",--This does need localizing though.
+	cdnp 		= "Show timer for $spell:%s cooldown (next phase)",
 }
 
 

@@ -347,7 +347,7 @@ for i = 1, 40 do
 	nameplates = nameplates .. " nameplate" .. i
 end
 
-local DbmRV = "[DBM RV] "
+local DbmRV = "[DBM] "
 ------------------------
 -- Global Identifiers --
 ------------------------
@@ -371,7 +371,7 @@ local raid = {}
 local modSyncSpam = {}
 local autoRespondSpam = {}
 local chatPrefix = "<Dungeon Boss Master> "
-local chatPrefixShort = "<DBM RV> "
+local chatPrefixShort = "<DBM> "
 local ver = ("%s (r%d)"):format(DBM.DisplayVersion, DBM.Revision)
 local mainFrame = CreateFrame("Frame", "DBMMainFrame")
 local newerVersionPerson = {}
@@ -3150,6 +3150,15 @@ function DBM:GetCIDFromGUID(guid)
 		return tonumber(playerdbID)
 	end
 	return 0
+end
+
+function DBM:GetSpellName(spellId)
+	local name = GetSpellInfo(spellId)
+	if name then
+		return name
+	else
+		return DBM_CORE_UNKNOWN
+	end
 end
 
 function DBM:IsCreatureGUID(guid)
@@ -6510,6 +6519,9 @@ end
 
 --Handle new spell name requesting with wrapper, to make api changes easier to handle
 function DBM:GetSpellInfo(spellId)
+	if not spellId then
+		return nil
+	end
 	local name, rank, icon, castingTime, minRange, maxRange, returnedSpellId  = GetSpellInfo(spellId)
 	if not returnedSpellId then--Bad request all together
 		if spellId ~= 0 and spellId ~= 2 then
@@ -11068,6 +11080,9 @@ do
 		elseif timerType == "cdspecial" or timerType == "nextspecial" or timerType == "stage" or timerType == "roleplay" then--Timers without spellid, generic
 			self.localization.options[id] = DBM_CORE_AUTO_TIMER_OPTIONS[timerType]--Using more than 1 stage timer or more than 1 special timer will break this, fortunately you should NEVER use more than 1 of either in a mod
 		else
+			if DBM_CORE_AUTO_TIMER_OPTIONS[timerType] == nil then
+				print("timer type: "..timerType)
+			end
 			self.localization.options[id] = DBM_CORE_AUTO_TIMER_OPTIONS[timerType]:format(unparsedId)
 		end
 		return obj
@@ -11083,6 +11098,10 @@ do
 
 	function bossModPrototype:NewBuffFadesTimer(...)
 		return newTimer(self, "fades", ...)
+	end
+	
+	function bossModPrototype:NewCDNPTimer(...)
+		return newTimer(self, "cdnp", ...)
 	end
 
 	function bossModPrototype:NewCastTimer(timer, ...)
