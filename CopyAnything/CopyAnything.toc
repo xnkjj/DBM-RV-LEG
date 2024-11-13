@@ -1,0 +1,11 @@
+## Interface: 70300
+## Title: Copy Anything
+## Notes: Copy text from any frame.
+## Author: Oppzippy
+## Version: v1.0.3
+## X-Curse-Project-ID: 341960
+
+Locales\locales.xml
+Libs.xml
+Bindings.xml
+Core.lua
