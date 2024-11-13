@@ -134,7 +134,7 @@ local shieldTimers = {20.0, 20.0, 33.0, 22.0, 20.0, 35.0, 20.0, 20.0, 20.0, 20.0
 local expelLightTimers = {25.0, 20.0, 15.0, 30.0, 20.0}
 
 local blast = replaceSpellLinks(227629) --Выверенный взрыв
-local DbmRV = "[DBM RV] "
+local DbmRV = "[DBM] "
 
 local function startMurchalProshlyapation(self)
 	smartChat(L.ProshlyapMurchal:format(DbmRV, blast), "rw")

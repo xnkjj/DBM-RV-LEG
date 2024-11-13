@@ -134,7 +134,7 @@ local frigidNova = replaceSpellLinks(206949) --Ледяная новая
 local FelNova = replaceSpellLinks(206517) --Новая Скверны
 local devouringForce = replaceSpellLinks(216909) --Всепожирающая сила
 local grandConjunction = replaceSpellLinks(205408) --Великое соединение
-local DbmRV = "[DBM RV] "
+local DbmRV = "[DBM] "
 
 local function startProshlyapationOfMurchal1(self)
 	smartChat(L.ProshlyapMurchal:format(DbmRV, frigidNova), "rw")

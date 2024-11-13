@@ -111,7 +111,7 @@ mod:AddBoolOption("YellOnToys", true) --игрушки
 mod:AddBoolOption("AutoSpirit", true)
 
 local typeInstance = nil
-local DbmRV = "[DBM RV] "
+local DbmRV = "[DBM] "
 
 local function UnitInYourParty(sourceName)
 	if GetNumGroupMembers() > 0 and (UnitInParty(sourceName) or UnitPlayerOrPetInParty(sourceName) or UnitInRaid(sourceName) or UnitInBattleground(sourceName)) then
